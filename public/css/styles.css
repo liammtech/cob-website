@@ -8,3 +8,197 @@
   display: block;
   opacity: 1;
 }
+
+/* === Reset and Base Styles === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: system-ui, sans-serif;
+  background: #fff;
+  color: #111;
+  height: 100vh;
+  overflow: hidden; /* keep controlled scroll behavior */
+}
+
+/* === Header Navigation === */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+  padding: 1rem 2rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #111;
+  transition: width 0.3s ease;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* === Page Sections === */
+main {
+  padding-top: 80px; /* space for fixed header */
+  height: 100vh;
+  overflow: auto;
+}
+
+.page-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.page-section.active {
+  display: block;
+  opacity: 1;
+}
+
+/* === Illustration Gallery (Placeholder) === */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  position: relative;
+}
+
+.brick {
+  width: 320px;
+  height: 160px;
+
+  position: relative;
+  flex-shrink: 0;
+}
+
+.brick img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%);
+  transition: transform 0.4s ease, filter 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* On hover: make image float and expand */
+.brick:hover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  z-index: 10;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Dim others */
+.gallery:hover .brick:not(:hover) img {
+  opacity: 0.4;
+}
+
+/* === Modal === */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+#modal-close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Optional: entry animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === Footer === */
+footer {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #666;
+}

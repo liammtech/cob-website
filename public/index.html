@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notorious C.O.B.</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <script src="js/main.js"></script>
+  <script src="./js/main.js"></script>
 
 </head>
 <body>
@@ -26,11 +26,27 @@
     </nav>
     </header>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img src="" alt="" id="modal-img" />
+            <button id="modal-close">&times;</button>
+        </div>
+    </div>
+
     <main>
     <section id="illustration" class="page-section active">
         <h2>Illustration</h2>
         <div class="gallery">
-        <!-- Artwork thumbnails -->
+            <div class="row full">
+            <div class="brick"><img src="img/10.jpeg" alt=""></div>
+            <div class="brick"><img src="img/2.jpeg" alt=""></div>
+            <div class="brick"><img src="img/3.jpeg" alt=""></div>
+        </div>
+        <div class="row offset">
+            <div class="brick"><img src="img/4.jpeg" alt=""></div>
+            <div class="brick"><img src="img/5.jpeg" alt=""></div>
+        </div>
+            <!-- and so on -->
         </div>
     </section>
 
