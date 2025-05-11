@@ -81,6 +81,7 @@ fetch('/images.json')
     filenames.forEach(filename => {
       const img = document.createElement('img');
       img.src = `img/${filename}`;
+      console.log('Creating image element:', img.src);
       document.querySelector('.gallery').appendChild(img);
     });
   });
