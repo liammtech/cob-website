@@ -31,6 +31,8 @@ function getPattern() {
   }
 }
 
+console.log('Gallery:', document.querySelector('.gallery'));
+
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
   // Clear any existing content
