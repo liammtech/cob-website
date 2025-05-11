@@ -1,0 +1,24 @@
+{
+  "name": "cob-website",
+  "version": "1.0.0",
+  "description": "Draft portfolio showcase website for the graphic artist Notorious C.O.B.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liammtech/cob-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liammtech/cob-website/issues"
+  },
+  "homepage": "https://github.com/liammtech/cob-website#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

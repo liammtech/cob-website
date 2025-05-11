@@ -1,1 +1,8 @@
 scratch.txt
+node_modules/
+*.log
+npm-debug.log*
+dist/
+build/
+dist/
+build/
