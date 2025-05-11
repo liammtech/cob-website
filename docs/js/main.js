@@ -73,11 +73,14 @@ function renderGallery() {
 }
 
 // Initial fetch and render:
-fetch('/images')
+fetch('/images.json')
   .then(res => res.json())
-  .then(images => {
-    imageFilenames = images;
-    renderGallery();
+  .then(filenames => {
+    filenames.forEach(filename => {
+      const img = document.createElement('img');
+      img.src = `/img/${filename}`;
+      document.querySelector('.gallery').appendChild(img);
+    });
   });
 
 // Optionally, listen for window resize and rebuild if the breakpoint changes.
