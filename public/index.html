@@ -18,6 +18,7 @@
 
 
   <header>
+  <div class="site-logo" >Notorious C.O.B.</div>
   <nav>
       <ul>
       <li><a href="#" data-page="illustration">Illustration</a></li>
@@ -42,24 +43,7 @@
       <div class="fade-wrapper">
         <div class="fade-mask"></div>
         <div class="gallery">
-            <div class="row full">
-                <div class="brick"><img src="img/10.jpeg" alt=""></div>
-                <div class="brick"><img src="img/2.jpeg" alt=""></div>
-                <div class="brick"><img src="img/3.jpeg" alt=""></div>
-            </div>
-            <div class="row offset">
-                <div class="brick"><img src="img/4.jpeg" alt=""></div>
-                <div class="brick"><img src="img/5.jpeg" alt=""></div>
-            </div>
-            <div class="row full">
-                <div class="brick"><img src="img/6.jpeg" alt=""></div>
-                <div class="brick"><img src="img/7.jpeg" alt=""></div>
-                <div class="brick"><img src="img/8.jpeg" alt=""></div>
-            </div>
-            <div class="row offset">
-                <div class="brick"><img src="img/9.jpeg" alt=""></div>
-                <div class="brick"><img src="img/10.jpeg" alt=""></div>
-            </div>
+
         </div>
       </div>
   </section>
@@ -76,11 +60,34 @@
   </section>
   
   <section id="contact" class="page-section">
-      <h2>Contact</h2>
-      <form>
-      <!-- Contact form fields -->
-      </form>
+    <h2>Contact</h2>
+    <form id="contact-form" method="POST">
+    <label>
+        Full Name
+        <input type="text" name="name" required>
+    </label>
+
+    <label>
+        Email
+        <input type="email" name="email" required>
+    </label>
+
+    <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <button type="submit">Send</button>
+    </form>
+
+    <div id="contact-feedback"></div>
   </section>
   </main>
+
+  <footer class="site-footer">
+    <p>Made with ❤️ by LMents</p>
+    <p>Copyright © 2025 Notorious C.O.B.</p>
+  </footer>
+
 </body>
 </html>
