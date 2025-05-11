@@ -40,10 +40,53 @@ body {
     overflow-y: scroll;
 }
 
-.site-logo {
+.site-logo > a {
   font-family: 'Rafika';
   font-size: 36px;
   text-align: center;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+}
+
+.site-logo > a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #111;
+  transition: width 0.3s ease;
+}
+
+.site-logo > a:hover::after {
+  width: 100%;
+}
+
+.site-nav {
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 body > *:not(footer) {
@@ -73,6 +116,12 @@ header {
   width: 100%;
   padding: 1rem 2rem;
   z-index: 1001;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Rafika', sans-serif;
 }
 
 nav ul {
@@ -413,4 +462,92 @@ main {
 
 .site-footer p {
   margin: 0.5rem 0;
+}
+
+/* 🍔 Burger button (hidden by default) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* 👇 Media query: mobile styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  .site-nav.open .nav-links {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden; /* prevent body from scrolling horizontally */
+  }
+
+  .gallery {
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .row {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .brick {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .brick img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    position: static !important;
+    transform: none !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    filter: grayscale(0%) !important;
+    z-index: 1 !important;
+    pointer-events: auto;
+  }
+
+  .brick:hover img {
+    position: static !important;
+    transform: none !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    filter: grayscale(75%) !important;
+  }
 }

@@ -91,9 +91,6 @@ window.addEventListener('resize', () => {
   }
 });
 
-
-
-
 // MODAL =============================================
 
 const modal = document.getElementById('modal');
@@ -107,14 +104,15 @@ const modal = document.getElementById('modal');
   }
 
   // Open modal
-  document.querySelectorAll('.brick img').forEach(img => {
-    img.addEventListener('click', () => {
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      modal.classList.add('show');
-      updateModalImageSize();
-    });
-  });
+document.querySelector('.gallery').addEventListener('click', (e) => {
+  if (e.target.tagName === 'IMG' && e.target.closest('.brick')) {
+    modalImg.src = e.target.src;
+    modalImg.alt = e.target.alt;
+    modal.classList.add('show');
+    updateModalImageSize();
+  }
+});
+
 
   // Close modal
   modalClose.addEventListener('click', () => modal.classList.remove('show'));
@@ -181,6 +179,12 @@ gallery.addEventListener('mouseout', e => {
   }
 });
 
+const toggleBtn = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.site-nav');
+
+toggleBtn.addEventListener('click', () => {
+  nav.classList.toggle('open');
+});
 
 });
 

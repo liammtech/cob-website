@@ -8,6 +8,14 @@
   <script src="./js/main.js"></script>
 
 </head>
+<script>
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.site-nav');
+
+  toggleBtn.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+</script>
 <body>
 
   <!-- <section id="splash">
@@ -18,12 +26,13 @@
 
 
   <header>
-  <div class="site-logo" >Notorious C.O.B.</div>
-  <nav>
-      <ul>
-      <li><a href="#" data-page="illustration">Illustration</a></li>
-      <li><a href="#" data-page="about">About</a></li>
-      <li><a href="#" data-page="contact">Contact</a></li>
+  <div class="site-logo"><a href="./index.html">Notorious C.O.B.</a></div>
+  <nav class="site-nav">
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#" data-page="illustration">Illustration</a></li>
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
       </ul>
   </nav>
   </header>
