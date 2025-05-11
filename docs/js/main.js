@@ -60,7 +60,7 @@ function renderGallery() {
       brick.classList.add('brick');
       
       const img = document.createElement('img');
-      img.src = `/img/${imageFilenames[i]}`;
+      img.src = `img/${imageFilenames[i]}`;
       img.alt = '';
       
       brick.appendChild(img);
