@@ -10,33 +10,37 @@
 </head>
 <body>
 
-  <section id="splash">
+  <!-- <section id="splash">
     <svg id="logo" viewBox="..." preserveAspectRatio="xMidYMid meet">
-      <!-- Logo paths go here -->
+      Logo paths go here
     </svg>
-  </section>
+  </section> -->
 
 
   <header>
-    <nav>
-        <ul>
-        <li><a href="#" data-page="illustration">Illustration</a></li>
-        <li><a href="#" data-page="about">About</a></li>
-        <li><a href="#" data-page="contact">Contact</a></li>
-        </ul>
-    </nav>
-    </header>
+  <nav>
+      <ul>
+      <li><a href="#" data-page="illustration">Illustration</a></li>
+      <li><a href="#" data-page="about">About</a></li>
+      <li><a href="#" data-page="contact">Contact</a></li>
+      </ul>
+  </nav>
+  </header>
 
-    <div id="modal" class="modal test-modal">
-        <div class="modal-content">
-            <img src="" alt="" id="modal-img" />
-            <button id="modal-close">&times;</button>
-        </div>
-    </div>
-
-    <main>
-    <section id="illustration" class="page-section active">
-        <h2 id="illustration-header">Illustration</h2>
+  <div class="fade-mask"></div>
+  
+  <div id="modal" class="modal test-modal">
+      <div class="modal-content">
+          <img src="" alt="" id="modal-img" />
+          <button id="modal-close">&times;</button>
+      </div>
+  </div>
+  
+  <main>
+  <section id="illustration" class="page-section active">
+      <h2 id="illustration-header">Illustration</h2>
+      <div class="fade-wrapper">
+        <div class="fade-mask"></div>
         <div class="gallery">
             <div class="row full">
                 <div class="brick"><img src="img/10.jpeg" alt=""></div>
@@ -52,28 +56,31 @@
                 <div class="brick"><img src="img/7.jpeg" alt=""></div>
                 <div class="brick"><img src="img/8.jpeg" alt=""></div>
             </div>
+            <div class="row offset">
+                <div class="brick"><img src="img/9.jpeg" alt=""></div>
+                <div class="brick"><img src="img/10.jpeg" alt=""></div>
+            </div>
         </div>
-    </section>
-
-    <section id="about" class="page-section">
-        <h2>About</h2>
-        <p>
-            Notorious C.O.B. is the working alias of <span>[redacted]</span>, a graphic artist based in South Yorkshire, UK <br><br>
-            Specialising in illustration on 2D and 3D physical media, and digital <br><br>
-            Works can be found in locations throughout the north of England, Wales, and the Netherlands<br><br>
-            Open to commissions and suggestions for worthwhile ventures<br><br>
-            Any queries, please get in touch through the linked contact form
-        </p>
-    </section>
-
-    <section id="contact" class="page-section">
-        <h2>Contact</h2>
-        <form>
-        <!-- Contact form fields -->
-        </form>
-    </section>
-    </main>
-
-  <script src="script.js"></script>
+      </div>
+  </section>
+  
+  <section id="about" class="page-section">
+      <h2>About</h2>
+      <p>
+          Notorious C.O.B. is the working alias of <span>[redacted]</span>, a graphic artist based in South Yorkshire, UK <br><br>
+          Specialising in illustration on 2D and 3D physical media, and digital <br><br>
+          Works can be found in locations throughout the north of England, Wales, and the Netherlands<br><br>
+          Open to commissions and suggestions for worthwhile ventures<br><br>
+          Any queries, please get in touch through the linked contact form
+      </p>
+  </section>
+  
+  <section id="contact" class="page-section">
+      <h2>Contact</h2>
+      <form>
+      <!-- Contact form fields -->
+      </form>
+  </section>
+  </main>
 </body>
 </html>

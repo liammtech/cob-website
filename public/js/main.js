@@ -71,6 +71,11 @@ const modal = document.getElementById('modal');
   } else {
     sectionHeader.style.opacity = 1;
   }
+
+  // FADE BRICKS ===============================
+  const bricks = document.querySelectorAll('.brick');
+
 });
 
 });
+
