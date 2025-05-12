@@ -78,12 +78,8 @@ function renderGallery() {
 fetch('/images.json')
   .then(res => res.json())
   .then(filenames => {
-    filenames.forEach(filename => {
-      const img = document.createElement('img');
-      img.src = `img/${filename}`;
-      console.log('Creating image element:', img.src);
-      document.querySelector('.gallery').appendChild(img);
-    });
+    imageFilenames = filenames;
+    renderGallery();
   });
 
 // Optionally, listen for window resize and rebuild if the breakpoint changes.
