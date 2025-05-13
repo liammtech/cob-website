@@ -185,10 +185,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-mediumZoom('#modal-img', {
-    margin: 24,
-    background: '#fff',
-});
+new PinchZoom(document.getElementById('modal-zoom-wrapper'), {});
 
 });
 
