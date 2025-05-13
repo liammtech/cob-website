@@ -533,18 +533,23 @@ main {
 }
 
 /* 📌 PinchZoom wraps the <img> with this */
-#pinch-wrapper > div {
-  position: relative !important;
-  width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  transform-origin: center center !important;
+#pinch-wrapper img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: auto;
 
-  /* prevent rendering glitches */
+  /* 🚑 Flicker-prevention combo */
   backface-visibility: hidden;
   will-change: transform;
-  transform-style: preserve-3d;
+  transform: translateZ(0);
+  transform-origin: center center;
 }
+
 
 /* ✅ Your actual image — must stay visible */
 #pinch-wrapper img {
