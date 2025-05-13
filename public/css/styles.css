@@ -511,12 +511,12 @@ main {
     z-index: 10;
   }
 
-  #pinch-wrapper {
+#pinch-wrapper {
   position: relative;
   overflow: hidden;
   max-height: 90vh;
   width: 100%;
-  touch-action: none;
+  touch-action: pan-y pinch-zoom;
 }
 
 #pinch-wrapper img {
