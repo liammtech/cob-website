@@ -8,14 +8,7 @@
   <script src="./js/main.js"></script>
 
 </head>
-<script>
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.site-nav');
 
-  toggleBtn.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-</script>
 <body>
 
   <!-- <section id="splash">
@@ -41,7 +34,9 @@
   
   <div id="modal" class="modal test-modal">
       <div class="modal-content">
-          <img src="" alt="" id="modal-img" />
+          <div class="modal-zoom-wrapper">
+              <img src="" alt="" id="modal-img" />
+          </div>
           <button id="modal-close">&times;</button>
       </div>
   </div>

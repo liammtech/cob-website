@@ -75,7 +75,7 @@ function renderGallery() {
 }
 
 // Initial fetch and render:
-fetch('/images.json')
+fetch('images.json')
   .then(res => res.json())
   .then(filenames => {
     imageFilenames = filenames;
@@ -139,15 +139,6 @@ document.querySelector('.gallery').addEventListener('click', (e) => {
   const rect = sectionHeader.getBoundingClientRect();
   const distanceFromTop = rect.top;
 
-  if (distanceFromTop <= fadeEnd) {
-    sectionHeader.style.opacity = 0;
-  } else if (distanceFromTop <= fadeStart) {
-    const opacity = (distanceFromTop - fadeEnd) / (fadeStart - fadeEnd);
-    sectionHeader.style.opacity = opacity.toFixed(2);
-  } else {
-    sectionHeader.style.opacity = 1;
-  }
-
   // FADE BRICKS ===============================
   const bricks = document.querySelectorAll('.brick');
 
@@ -186,6 +177,12 @@ const nav = document.querySelector('.site-nav');
 
 toggleBtn.addEventListener('click', () => {
   nav.classList.toggle('open');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.site-nav').classList.remove('open');
+  });
 });
 
 });
