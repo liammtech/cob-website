@@ -460,6 +460,57 @@ main {
   cursor: pointer;
 }
 
+  /* PINCHZOOM modal settings */
+
+  .pinch-zoom-container {
+    height: 100% !important;
+    width: 100% !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  #modal-zoom-wrapper {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 90vh;
+    overflow: hidden;
+
+    transform: none !important;
+    transform-origin: center center !important;
+    backface-visibility: visible !important;
+    will-change: auto !important;
+  }
+
+  #modal-zoom-wrapper > div {
+    position: relative;
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+  #modal-zoom-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    user-select: none;
+    pointer-events: auto;
+  }
+
+  .modal-content {
+    position: relative;
+    min-height: 60vh;
+    z-index: 1;
+  }
+
+  #modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+
 /* 👇 Media query: mobile styles */
 /* === Mobile Styles (<= 768px) === */
 @media (max-width: 768px) {
@@ -556,43 +607,6 @@ main {
     transform: none !important;
     max-height: none !important;
     box-shadow: none !important;
-  }
-
-  /* PINCHZOOM modal settings */
-
-  #modal-zoom-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-height: 90vh;
-    overflow: hidden;
-  }
-
-  #modal-zoom-wrapper > div {
-    position: relative;
-    width: 100% !important;
-    height: auto !important;
-    display: block;
-  }
-
-  #modal-zoom-wrapper img {
-    display: block;
-    width: 100%;
-    height: auto;
-    user-select: none;
-    pointer-events: auto;
-  }
-
-  .modal-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  #modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 10;
   }
 }
 
