@@ -98,17 +98,23 @@
     let zoomInstance;
 
     function setupZoom() {
-      console.log("PinchZoom init called");
-      const wrapper = document.getElementById('pinch-wrapper');
+    const wrapper = document.getElementById('pinch-wrapper');
 
-      if (zoomInstance && zoomInstance.destroy) {
-        zoomInstance.destroy();
-      }
+    if (!wrapper) return;
 
+    if (zoomInstance && zoomInstance.destroy) {
+      zoomInstance.destroy();
+    }
+
+    // Slight delay to allow DOM layout to stabilize
+    setTimeout(() => {
       zoomInstance = new PinchZoom(wrapper, {
         draggableUnzoomed: false,
+        minZoom: 1,
       });
-    }
+      console.log("PinchZoom initialized");
+    }, 0);
+  }
 
     // 📌 Delegate clicks on any .brick img
     document.addEventListener('click', (e) => {
@@ -144,9 +150,11 @@
 
     // 📌 Handle modal close
     document.getElementById('modal-close').addEventListener('click', () => {
-      if (zoomInstance && zoomInstance.zoomOut) {
-        zoomInstance.zoomOut();
-      }
+      setTimeout(() => {
+        if (zoomInstance && zoomInstance.zoomOut) {
+          zoomInstance.zoomOut();
+        }
+      }, 10);
 
       document.getElementById('modal').classList.remove('show');
 
@@ -156,9 +164,6 @@
     });
   });
 </script>
-
-
-
 
 </body>
 </html>

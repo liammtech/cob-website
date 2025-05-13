@@ -515,6 +515,9 @@ main {
     width: 100% !important;
     height: auto !important;
     max-height: 90vh;
+    overflow: hidden !important;
+    backface-visibility: visible !important;
+    will-change: transform;
   }
 
   #pinch-wrapper {
@@ -534,6 +537,9 @@ main {
     height: auto !important;
     display: block !important;
     position: relative !important;
+    transform-origin: center center !important;
+    justify-content: center;
+    align-items: center;
   }
 
   #pinch-wrapper img {
