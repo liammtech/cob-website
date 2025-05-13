@@ -1,5 +1,3 @@
-import PinchZoom from 'pinchzoom';
-
 document.addEventListener('DOMContentLoaded', () => {
 const links = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('.page-section');
@@ -188,10 +186,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 console.log(document.getElementById('modal-zoom-wrapper'));
-
-let pz = new PinchZoom(document.getElementById('modal-zoom-wrapper'), {});
-console.log(pz);
-pz.enable();
 
 });
 

@@ -510,11 +510,6 @@ main {
     display: flex;
   }
 
-  mediumZoom('#modal-img', {
-    margin: 24,
-    background: '#fff',
-  });
-
   .gallery {
     padding: 0;
     width: 100%;
@@ -562,6 +557,21 @@ main {
     max-height: none !important;
     box-shadow: none !important;
   }
+
+  #modal-zoom-wrapper {
+    overflow: hidden;
+    touch-action: none;
+    max-height: 90vh;
+  }
+
+  #modal-zoom-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    user-select: none;
+    pointer-events: auto;
+  }
+
 }
 
 /* === Desktop Styles (>= 769px) === */
