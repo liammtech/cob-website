@@ -462,12 +462,7 @@ main {
 
   /* PINCHZOOM modal settings */
 
-  .pinch-zoom-container {
-    height: 100% !important;
-    width: 100% !important;
-    position: relative !important;
-    display: block !important;
-  }
+
 
   #modal-zoom-wrapper {
     position: relative !important;
@@ -490,18 +485,21 @@ main {
     display: block;
   }
 
-  #modal-zoom-wrapper img {
-    display: block;
-    width: 100%;
-    height: auto;
-    user-select: none;
-    pointer-events: auto;
-  }
-
   .modal-content {
     position: relative;
-    min-height: 60vh;
-    z-index: 1;
+    height: auto;
+    width: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: 5vh auto;
+    background: transparent; /* ❗ if you want no white box */
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   #modal-close {
@@ -511,21 +509,67 @@ main {
     z-index: 10;
   }
 
-#pinch-wrapper {
+  .pinch-zoom-container {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 90vh;
+  }
+
+  #pinch-wrapper {
+    position: relative !important;
+    display: block;
+    max-height: 90vh;
+    width: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    touch-action: pinch-zoom;
+    background: transparent;
+    border-radius: 6px;
+  }
+
+  #pinch-wrapper > div {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+  }
+
+  #pinch-wrapper img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 90vh;
+    max-width: 100%;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: auto;
+  }
+
+  #modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+.modal-content {
   position: relative;
-  overflow: hidden;
-  max-height: 90vh;
-  width: 100%;
-  touch-action: pan-y pinch-zoom;
 }
 
-#pinch-wrapper img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  user-select: none;
-}
+
 
 /* 👇 Media query: mobile styles */
 /* === Mobile Styles (<= 768px) === */

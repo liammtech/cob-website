@@ -94,44 +94,73 @@
 
   <script src="js/pinchzoom-global.js"></script>
   <script>
-  let zoomInstance;
+  document.addEventListener('DOMContentLoaded', () => {
+    let zoomInstance;
 
-function setupZoom() {
-  const wrapper = document.getElementById('pinch-wrapper');
+    function setupZoom() {
+      console.log("PinchZoom init called");
+      const wrapper = document.getElementById('pinch-wrapper');
 
-  if (zoomInstance && zoomInstance.destroy) {
-    zoomInstance.destroy();
-  }
+      if (zoomInstance && zoomInstance.destroy) {
+        zoomInstance.destroy();
+      }
 
-  zoomInstance = new PinchZoom(wrapper, {
-    draggableUnzoomed: false,
+      zoomInstance = new PinchZoom(wrapper, {
+        draggableUnzoomed: false,
+      });
+    }
+
+    // 📌 Delegate clicks on any .brick img
+    document.addEventListener('click', (e) => {
+      if (e.target.matches('.brick img')) {
+        console.log("Image clicked");
+
+        const modalContent = document.querySelector('.modal-content');
+
+        // Remove old zoom wrapper if present
+        const oldWrapper = document.getElementById('pinch-wrapper');
+        if (oldWrapper) oldWrapper.remove();
+
+        // Create new wrapper and image
+        const wrapper = document.createElement('div');
+        wrapper.id = 'pinch-wrapper';
+
+        const modalImg = document.createElement('img');
+        modalImg.id = 'modal-img';
+        modalImg.alt = 'Zoomable image';
+        modalImg.src = e.target.src;
+
+        wrapper.appendChild(modalImg);
+        modalContent.insertBefore(wrapper, document.getElementById('modal-close'));
+
+        // Give the DOM a tick to render before attaching zoom
+        setTimeout(() => {
+          setupZoom();
+        }, 0);
+
+        document.getElementById('modal').classList.add('show');
+      }
+    });
+
+    // 📌 Handle modal close
+    document.getElementById('modal-close').addEventListener('click', () => {
+      if (zoomInstance && zoomInstance.zoomOut) {
+        zoomInstance.zoomOut();
+      }
+
+      document.getElementById('modal').classList.remove('show');
+
+      // Optional: clear wrapper to avoid stale DOM
+      const oldWrapper = document.getElementById('pinch-wrapper');
+      if (oldWrapper) oldWrapper.remove();
+    });
   });
-}
-
-document.querySelectorAll('.brick img').forEach(img => {
-  img.addEventListener('click', () => {
-    const modalImg = document.getElementById('modal-img');
-    modalImg.src = img.src;
-
-    // Wait until the image finishes loading before zooming
-    modalImg.onload = () => {
-      setupZoom();
-    };
-
-    document.getElementById('modal').classList.add('show');
-  });
-});
-
-document.getElementById('modal-close').addEventListener('click', () => {
-  if (zoomInstance && zoomInstance.zoomOut) {
-    zoomInstance.zoomOut();
-  }
-
-  document.getElementById('modal').classList.remove('show');
-});
-
 </script>
+
+
 
 
 </body>
 </html>
+
+
