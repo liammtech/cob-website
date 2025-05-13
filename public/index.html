@@ -33,7 +33,7 @@
   
   <div id="modal" class="modal test-modal">
       <div class="modal-content">
-          <div id="modal-zoom-wrapper">
+          <div id="pinch-wrapper">
               <img src="" alt="" id="modal-img" />
           </div>
           <button id="modal-close">&times;</button>
@@ -94,10 +94,46 @@
 
   <script src="js/pinchzoom-global.js"></script>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PinchZoom(document.getElementById('modal-zoom-wrapper'), {});
+  let zoomInstance;
+
+  function setupZoom() {
+    const wrapper = document.getElementById('pinch-wrapper');
+
+    // Kill old instance if it exists
+    if (zoomInstance && zoomInstance.destroy) {
+      zoomInstance.destroy();
+    }
+
+    // Create fresh zoom instance
+    zoomInstance = new PinchZoom(wrapper, {
+      draggableUnzoomed: false,
     });
-  </script>
+  }
+
+  // Example: when a gallery image is clicked
+  document.querySelectorAll('.brick img').forEach(img => {
+    img.addEventListener('click', () => {
+      // Set modal image source
+      document.getElementById('modal-img').src = img.src;
+
+      // Show modal
+      document.getElementById('modal').classList.add('show');
+
+      // Setup zoom for new image
+      setupZoom();
+    });
+  });
+
+  // Optional: reset zoom on modal close
+  document.getElementById('modal-close').addEventListener('click', () => {
+    if (zoomInstance && zoomInstance.zoomOut) {
+      zoomInstance.zoomOut();
+    }
+
+    document.getElementById('modal').classList.remove('show');
+  });
+</script>
+
 
 </body>
 </html>

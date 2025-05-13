@@ -511,6 +511,22 @@ main {
     z-index: 10;
   }
 
+  #pinch-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-height: 90vh;
+  width: 100%;
+  touch-action: none;
+}
+
+#pinch-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+}
+
 /* 👇 Media query: mobile styles */
 /* === Mobile Styles (<= 768px) === */
 @media (max-width: 768px) {
