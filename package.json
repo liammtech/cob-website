@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/liammtech/cob-website#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "medium-zoom": "^1.1.0"
   }
 }

@@ -510,22 +510,10 @@ main {
     display: flex;
   }
 
-  .modal-zoom-wrapper {
-    overflow: auto;
-    touch-action: pinch-zoom;
-    -webkit-overflow-scrolling: touch;
-    max-height: 90vh;
-    border-radius: 8px;
-  }
-
-  .modal-zoom-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-    touch-action: manipulation;
-    user-select: none;
-    pointer-events: auto;
-  }
+  mediumZoom('#modal-img', {
+    margin: 24,
+    background: '#fff',
+  });
 
   .gallery {
     padding: 0;
