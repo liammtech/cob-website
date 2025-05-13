@@ -98,23 +98,32 @@
     let zoomInstance;
 
     function setupZoom() {
-    const wrapper = document.getElementById('pinch-wrapper');
+      const wrapper = document.getElementById('pinch-wrapper');
 
-    if (!wrapper) return;
+      if (!wrapper) return;
 
-    if (zoomInstance && zoomInstance.destroy) {
-      zoomInstance.destroy();
+      if (zoomInstance && zoomInstance.destroy) {
+        zoomInstance.destroy();
+      }
+
+      // Slight delay to allow DOM layout to stabilize
+      setTimeout(() => {
+        zoomInstance = new PinchZoom(wrapper, {
+          draggableUnzoomed: false,
+          minZoom: 1,
+        });
+        zoomInstance.on('zoomEnd', () => {
+          const scale = zoomInstance.zoomFactor;
+
+          if (scale > 3) {
+            // Too big? Clamp it
+            zoomInstance.zoomFactor = 3;
+            zoomInstance.update();
+          }
+        });
+        console.log("PinchZoom initialized");
+      }, 0);
     }
-
-    // Slight delay to allow DOM layout to stabilize
-    setTimeout(() => {
-      zoomInstance = new PinchZoom(wrapper, {
-        draggableUnzoomed: false,
-        minZoom: 1,
-      });
-      console.log("PinchZoom initialized");
-    }, 0);
-  }
 
     // 📌 Delegate clicks on any .brick img
     document.addEventListener('click', (e) => {
