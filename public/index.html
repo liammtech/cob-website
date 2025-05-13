@@ -96,42 +96,40 @@
   <script>
   let zoomInstance;
 
-  function setupZoom() {
-    const wrapper = document.getElementById('pinch-wrapper');
+function setupZoom() {
+  const wrapper = document.getElementById('pinch-wrapper');
 
-    // Kill old instance if it exists
-    if (zoomInstance && zoomInstance.destroy) {
-      zoomInstance.destroy();
-    }
-
-    // Create fresh zoom instance
-    zoomInstance = new PinchZoom(wrapper, {
-      draggableUnzoomed: false,
-    });
+  if (zoomInstance && zoomInstance.destroy) {
+    zoomInstance.destroy();
   }
 
-  // Example: when a gallery image is clicked
-  document.querySelectorAll('.brick img').forEach(img => {
-    img.addEventListener('click', () => {
-      // Set modal image source
-      document.getElementById('modal-img').src = img.src;
+  zoomInstance = new PinchZoom(wrapper, {
+    draggableUnzoomed: false,
+  });
+}
 
-      // Show modal
-      document.getElementById('modal').classList.add('show');
+document.querySelectorAll('.brick img').forEach(img => {
+  img.addEventListener('click', () => {
+    const modalImg = document.getElementById('modal-img');
+    modalImg.src = img.src;
 
-      // Setup zoom for new image
+    // Wait until the image finishes loading before zooming
+    modalImg.onload = () => {
       setupZoom();
-    });
-  });
+    };
 
-  // Optional: reset zoom on modal close
-  document.getElementById('modal-close').addEventListener('click', () => {
-    if (zoomInstance && zoomInstance.zoomOut) {
-      zoomInstance.zoomOut();
-    }
-
-    document.getElementById('modal').classList.remove('show');
+    document.getElementById('modal').classList.add('show');
   });
+});
+
+document.getElementById('modal-close').addEventListener('click', () => {
+  if (zoomInstance && zoomInstance.zoomOut) {
+    zoomInstance.zoomOut();
+  }
+
+  document.getElementById('modal').classList.remove('show');
+});
+
 </script>
 
 
