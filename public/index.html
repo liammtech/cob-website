@@ -108,6 +108,8 @@
 
       // Slight delay to allow DOM layout to stabilize
       setTimeout(() => {
+
+        let zoomBugTimer;
         zoomInstance = new PinchZoom(wrapper, {
           draggableUnzoomed: false,
           minZoom: 1,
@@ -120,6 +122,16 @@
             zoomInstance.zoomFactor = 3;
             zoomInstance.update();
           }
+        });
+        wrapper.addEventListener('touchend', () => {
+          clearTimeout(zoomBugTimer);
+          zoomBugTimer = setTimeout(() => {
+            // If transform is stuck, reset everything
+            zoomInstance?.zoomOut();
+            zoomInstance?.destroy();
+            document.getElementById('modal').classList.remove('show');
+            wrapper.remove();
+          }, 800); // allow a moment before self-healing
         });
         console.log("PinchZoom initialized");
       }, 0);
