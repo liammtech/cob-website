@@ -509,49 +509,66 @@ main {
     z-index: 10;
   }
 
-  .pinch-zoom-container {
-    position: relative !important;
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: 90vh;
-    overflow: hidden !important;
-    backface-visibility: visible !important;
-    will-change: transform;
-  }
+  /* 🔧 Outer wrapper for the zoom area */
+#pinch-wrapper {
+  position: relative !important;
+  display: block;
+  max-height: 90vh;
+  width: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  touch-action: pinch-zoom;
+  background: transparent;
+  border-radius: 6px;
+}
 
-  #pinch-wrapper {
-    position: relative !important;
-    display: block;
-    max-height: 90vh;
-    width: auto;
-    margin: 0 auto;
-    overflow: hidden;
-    touch-action: pinch-zoom;
-    background: transparent;
-    border-radius: 6px;
-  }
+/* ✅ This targets the PinchZoom-injected container */
+#pinch-wrapper > div {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  position: relative !important;
+  transform-origin: center center !important;
 
-  #pinch-wrapper > div {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    position: relative !important;
-    transform-origin: center center !important;
-    justify-content: center;
-    align-items: center;
-  }
+  /* These are technically layout properties and not needed unless you go flex */
+  /* justify-content and align-items do nothing here without display: flex */
+  /* Remove these: */
+  /* justify-content: center; */
+  /* align-items: center; */
+}
 
-  #pinch-wrapper img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-height: 90vh;
-    max-width: 100%;
-    object-fit: contain;
-    user-select: none;
-    pointer-events: auto;
-  }
+/* ✅ For the inner .pinch-zoom-container (used internally by the library) */
+.pinch-zoom-container {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 90vh;
+  overflow: hidden !important;
+
+  /* 👇 These help reduce flicker */
+  backface-visibility: hidden !important;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* ✅ Target the raw <img> inside pinch-wrapper — hide this to prevent ghosting */
+#pinch-wrapper > img {
+  display: none !important;
+}
+
+/* ✅ Image inside PinchZoom’s injected div (the only one we want visible) */
+#pinch-wrapper > div img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 90vh;
+  max-width: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: auto;
+}
+
 
   #modal-close {
     position: absolute;
