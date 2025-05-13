@@ -185,7 +185,11 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-new PinchZoom(document.getElementById('modal-zoom-wrapper'), {});
+console.log(document.getElementById('modal-zoom-wrapper'));
+
+let pz = new PinchZoom(document.getElementById('modal-zoom-wrapper'), {});
+console.log(pz);
+pz.enable();
 
 });
 
