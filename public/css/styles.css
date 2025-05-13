@@ -558,10 +558,14 @@ main {
     box-shadow: none !important;
   }
 
+  /* PINCHZOOM modal settings */
+
   #modal-zoom-wrapper {
-    overflow: hidden;
-    touch-action: none;
+    display: block;
     max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
   }
 
   #modal-zoom-wrapper img {
@@ -570,8 +574,20 @@ main {
     height: auto;
     user-select: none;
     pointer-events: auto;
+    transform-origin: center center;
   }
 
+  .modal-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  #modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
 }
 
 /* === Desktop Styles (>= 769px) === */
