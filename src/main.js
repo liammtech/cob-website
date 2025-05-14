@@ -1,3 +1,5 @@
+import panzoom from '@panzoom/panzoom';
+
 document.addEventListener('DOMContentLoaded', () => {
 const links = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('.page-section');
@@ -236,6 +238,8 @@ function attachHoverFloatLogic() {
     });
   });
 }
+
+
 
 });
 

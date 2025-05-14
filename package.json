@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@panzoom/panzoom": "^4.6.0"
   }
 }

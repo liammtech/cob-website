@@ -525,6 +525,22 @@ main {
   z-index: 3000; /* top of the stack for safety */
 }
 
+#panzoom-container {
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* enables pinch gestures */
+  overflow: hidden;
+  position: relative;
+}
+
+#panzoom-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
 /* 👇 Media query: mobile styles */
 /* === Mobile Styles (<= 768px) === */
 @media (max-width: 768px) {
@@ -653,6 +669,8 @@ main {
     max-height: none !important;
     box-shadow: none !important;
   }
+
+  
 
 }
 
