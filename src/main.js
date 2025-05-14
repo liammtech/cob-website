@@ -112,6 +112,8 @@ const modal = document.getElementById('modal');
   // Open modal
 document.querySelector('.gallery').addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG' && e.target.closest('.brick')) {
+    resetPanzoom(); // ← ensures fresh zoom for each image
+
     modalImg.src = e.target.src;
     modalImg.alt = e.target.alt;
     modal.classList.add('show');
@@ -120,12 +122,23 @@ document.querySelector('.gallery').addEventListener('click', (e) => {
 });
 
   // Close modal
-  modalClose.addEventListener('click', () => modal.classList.remove('show'));
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('show');
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('show');
+    resetPanzoom();
   });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+      resetPanzoom();
+    }
+  });
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') modal.classList.remove('show');
+    if (e.key === 'Escape') {
+      modal.classList.remove('show');
+      resetPanzoom();
+    }
   });
 
   // Also update on resize
@@ -255,9 +268,17 @@ function initPanzoom() {
     minZoom: 1,
     bounds: true,
     boundsPadding: 0.1,
+    zoomSpeed: 0.1,
     smoothScroll: false,
     zoomDoubleClickSpeed: 1 // prevent accidental double-tap zoom
   });
+}
+
+function resetPanzoom() {
+  if (panzoomInstance) {
+    panzoomInstance.moveTo(0, 0);
+    panzoomInstance.zoomAbs(0, 0, 1);
+  }
 }
 
 modalImg.onload = () => {

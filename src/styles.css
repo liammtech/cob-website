@@ -473,13 +473,14 @@ main {
   position: relative;
   height: auto;
   width: auto;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: none;
+  max-height: none;
   margin: 5vh auto;
   background: transparent; /* ❗ if you want no white box */
   padding: 0;
   box-sizing: border-box;
   border-radius: 0;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -625,7 +626,7 @@ main {
   }
 
   .gallery {
-    padding: 1rem;
+    padding: rem;
     width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
