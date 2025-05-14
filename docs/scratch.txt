@@ -1,0 +1,22 @@
+- Accessibility (e.g. img alt attributes)
+- Animated splash screen:
+    - Initial down arrows
+    - Logo draw
+    - Migrate to header (or disappear on mobile?)
+- Softer page load
+- Should the logo replace the C.O.B. element of "NOTORIOUS C.O.B."? (Yes)
+- Background graphics on About and Contact pages*
+- Browser tab Favicon (mini COB logo)
+- Trial modal without 'x' button (check about accessibility concerns)
+- Add independent finger-zoom for modal on mobile (so that background doesn't zoom as well)
+- Disable main/gallery scroll
+- Disappearing Illustration header (opacity set to 0?) - might be done
+- Consider retyping "About" page (HMRC)
+- Refactor Javascript and CSS
+- Put more pictures into gallery
+- Get footer in view on mobile for About and Contact pages (no scroll)
+- Change password on zoho email
+- SMTP/NodeMailer
+- Set up proper footer on zoho email
+- Check about automatic contact form receipt acknowledgment (is this professional from info@? Or should it be a do-not-reply? OR sod it off?)
+- Security concerns - set up Captcha (), rate limiting, honeypot field

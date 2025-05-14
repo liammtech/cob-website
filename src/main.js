@@ -62,7 +62,7 @@ function renderGallery() {
       brick.classList.add('brick');
       
       const img = document.createElement('img');
-      img.src = `img/${imageFilenames[i]}`;
+      img.src = `assets/images/${imageFilenames[i]}`;
       img.alt = '';
       
       brick.appendChild(img);
@@ -72,10 +72,12 @@ function renderGallery() {
     gallery.appendChild(row);
     rowIndex++;
   }
+
+  attachHoverFloatLogic();
 }
 
 // Initial fetch and render:
-fetch('images.json')
+fetch('/assets/images/images.json')
   .then(res => res.json())
   .then(filenames => {
     imageFilenames = filenames;
@@ -114,7 +116,6 @@ document.querySelector('.gallery').addEventListener('click', (e) => {
     updateModalImageSize();
   }
 });
-
 
   // Close modal
   modalClose.addEventListener('click', () => modal.classList.remove('show'));
@@ -172,6 +173,8 @@ gallery.addEventListener('mouseout', e => {
   }
 });
 
+// HAMBURGER MENU ========================================
+
 const toggleBtn = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-nav');
 
@@ -185,7 +188,54 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-console.log(document.getElementById('modal-zoom-wrapper'));
+// IMAGE HOVER UP IF IT HITS BOTTOM OF GALLERY 
+function attachHoverFloatLogic() {
+  const gallery = document.querySelector('.gallery');
+
+  document.querySelectorAll('.brick').forEach(brick => {
+    const img = brick.querySelector('img');
+
+    brick.addEventListener('mouseenter', () => {
+      const brickRect = brick.getBoundingClientRect();
+      const galleryRect = gallery.getBoundingClientRect();
+
+      // Calculate natural image aspect ratio
+      const naturalAspect = img.naturalHeight / img.naturalWidth;
+
+      // Estimate what the zoomed height will be (respecting max-height: 90vh)
+      const zoomedHeight = Math.min(window.innerHeight * 0.9, brick.offsetWidth * naturalAspect);
+
+      // Predict where the bottom of the zoomed image will land
+      const projectedBottom = brickRect.top + zoomedHeight;
+
+      // Calculate overflow beyond the gallery container
+      const overflow = projectedBottom - galleryRect.bottom;
+
+      // Apply hover state
+      brick.classList.add('hovering');
+
+      // Reset transform styles first
+      img.style.transform = '';
+      img.style.transformOrigin = '';
+
+      if (overflow > 0) {
+        // Nudge upward by the overflow amount plus a small buffer
+        img.style.transform = `translateY(-${overflow + 10}px) scale(1.05)`;
+        img.style.transformOrigin = 'bottom center';
+      } else {
+        // Default zoom behaviour
+        img.style.transform = 'scale(1.05)';
+        img.style.transformOrigin = 'top center';
+      }
+    });
+
+    brick.addEventListener('mouseleave', () => {
+      brick.classList.remove('hovering');
+      img.style.transform = '';
+      img.style.transformOrigin = '';
+    });
+  });
+}
 
 });
 

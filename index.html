@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notorious C.O.B.</title>
+  <link rel="stylesheet" href="src/styles.css" />
+  <script src="src/main.js"></script>
+
+</head>
+
+<body>
+
+  <!-- <section id="splash">
+    <svg id="logo" viewBox="..." preserveAspectRatio="xMidYMid meet">
+      Logo paths go here
+    </svg>
+  </section> -->
+
+  <header>
+  <div class="site-logo"><a href="./index.html">Notorious C.O.B.</a></div>
+  <nav class="site-nav">
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#" data-page="illustration">Illustration</a></li>
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+      </ul>
+  </nav>
+  </header>
+
+  <div class="fade-mask"></div>
+  
+  <div id="modal" class="modal test-modal">
+      <div class="modal-content">
+          <div id="pinch-wrapper">
+              <img src="" alt="" id="modal-img" />
+          </div>
+          <button id="modal-close">&times;</button>
+      </div>
+  </div>
+  
+  <main>
+  <section id="illustration" class="page-section active">
+      <h2 id="illustration-header">Illustration</h2>
+        <div class="fade-mask"></div>
+        <div class="gallery">
+
+        </div>
+  </section>
+  
+  <section id="about" class="page-section">
+      <h2>About</h2>
+      <p>
+          Notorious C.O.B. is the working alias of <span>[redacted]</span>, a graphic artist based in South Yorkshire, UK <br><br>
+          Specialising in illustration on 2D and 3D physical media, and digital <br><br>
+          Works can be found in locations throughout the north of England, Wales, and the Netherlands<br><br>
+          Open to commissions and suggestions for worthwhile ventures<br><br>
+          Any queries, please get in touch through the linked contact form
+      </p>
+  </section>
+  
+  <section id="contact" class="page-section">
+    <h2>Contact</h2>
+    <form id="contact-form" method="POST">
+    <label>
+        Full Name
+        <input type="text" name="name" required>
+    </label>
+
+    <label>
+        Email
+        <input type="email" name="email" required>
+    </label>
+
+    <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <button type="submit">Send</button>
+    </form>
+
+    <div id="contact-feedback"></div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with ❤️ by LMents</p>
+    <p>Copyright © 2025 Notorious C.O.B.</p>
+  </footer>
+
+</body>
+</html>
+
+
