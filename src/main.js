@@ -239,5 +239,32 @@ function attachHoverFloatLogic() {
   });
 }
 
+let panzoomInstance = null;
+
+function initPanzoom() {
+  const container = document.getElementById('panzoom-container');
+
+  // Clean up any existing instance
+  if (panzoomInstance) {
+    panzoomInstance.dispose();
+  }
+
+  // Wait until modal is visible and image is loaded
+  panzoomInstance = panzoom(container, {
+    maxZoom: 5,
+    minZoom: 1,
+    bounds: true,
+    boundsPadding: 0.1,
+    smoothScroll: false,
+    zoomDoubleClickSpeed: 1 // prevent accidental double-tap zoom
+  });
+}
+
+modalImg.onload = () => {
+  requestAnimationFrame(() => {
+    initPanzoom();
+  });
+};
+
 });
 
