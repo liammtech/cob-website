@@ -100,7 +100,7 @@ window.addEventListener('resize', () => {
 // MODAL =============================================
 
 const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
+  const modalImg = document.getElementById('modalImage');
   const modalClose = document.getElementById('modal-close');
 
   function updateModalImageSize() {
@@ -238,8 +238,6 @@ function attachHoverFloatLogic() {
     });
   });
 }
-
-
 
 });
 
