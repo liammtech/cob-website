@@ -277,17 +277,22 @@ function initPanzoom() {
 function resetPanzoom() {
   if (panzoomInstance) {
     requestAnimationFrame(() => {
+      // Snap back visually
       panzoomInstance.moveTo(0, 0);
       panzoomInstance.zoomAbs(0, 0, 1);
 
-      // Give it a moment to visually reset before disposing
+      // Reapply size limits
+      document.querySelector('.modal-content')?.classList.remove('zoomed');
+
+      // Wait ~100ms before dispose so snap is visible
       setTimeout(() => {
         panzoomInstance.dispose();
         panzoomInstance = null;
-      }, 0); // you could increase this to ~50ms if needed
+      }, 100);
     });
   }
 }
+
 
 modalImg.onload = () => {
   requestAnimationFrame(() => {
