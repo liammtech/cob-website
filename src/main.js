@@ -276,19 +276,19 @@ function initPanzoom() {
 
 function resetPanzoom() {
   if (panzoomInstance) {
+    // Reapply constraints
+    document.querySelector('.modal-content')?.classList.remove('zoomed');
+
+    // Reset zoom + pan position
     requestAnimationFrame(() => {
-      // Snap back visually
       panzoomInstance.moveTo(0, 0);
       panzoomInstance.zoomAbs(0, 0, 1);
 
-      // Reapply size limits
-      document.querySelector('.modal-content')?.classList.remove('zoomed');
-
-      // Wait ~100ms before dispose so snap is visible
+      // Wait for the animation to finish
       setTimeout(() => {
         panzoomInstance.dispose();
         panzoomInstance = null;
-      }, 100);
+      }, 300); // matches the CSS transition duration
     });
   }
 }
