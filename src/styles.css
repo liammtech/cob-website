@@ -671,8 +671,26 @@ main {
     box-shadow: none !important;
   }
 
-  
+  .modal-content {
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
 
+  #panzoom-container {
+    width: auto;
+    height: auto;
+    touch-action: none;
+    overflow: visible;
+    position: relative;
+  }
 }
 
 /* === Desktop Styles (>= 769px) === */

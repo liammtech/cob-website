@@ -276,8 +276,16 @@ function initPanzoom() {
 
 function resetPanzoom() {
   if (panzoomInstance) {
-    panzoomInstance.moveTo(0, 0);
-    panzoomInstance.zoomAbs(0, 0, 1);
+    requestAnimationFrame(() => {
+      panzoomInstance.moveTo(0, 0);
+      panzoomInstance.zoomAbs(0, 0, 1);
+
+      // Give it a moment to visually reset before disposing
+      setTimeout(() => {
+        panzoomInstance.dispose();
+        panzoomInstance = null;
+      }, 0); // you could increase this to ~50ms if needed
+    });
   }
 }
 
