@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             message: formData.get('message'),
             honeypot: formData.get('company'),
             token: token, // ✅ Add the token here
+            
           };
-
+          console.log('reCAPTCHA token:', token);
           try {
             const response = await fetch('/api/contact', {
               method: 'POST',
