@@ -1,55 +1,30 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
+grecaptcha.ready(() => {
+  grecaptcha.execute('6LenIjwrAAAAAAYnqZPnVa8TRjTjWLJy2LrkTRfC', { action: 'submit' })
+    .then(async (token) => {
+      data.token = token;
 
-  if (!form) return;
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+      const text = await response.text();
+      let result;
 
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-      honeypot: formData.get('company'), // hidden trap
-    };
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        console.error('Failed to parse JSON:', text);
+        if (status) status.textContent = "Server error. Try again later.";
+        return;
+      }
 
-    // ✅ Wait for reCAPTCHA before submitting
-    grecaptcha.ready(() => {
-      grecaptcha.execute('6LenIjwrAAAAAAYnqZPnVa8TRjTjWLJy2LrkTRfC', { action: 'submit' })
-        .then(async (token) => {
-          data.token = token;
-
-          try {
-            const response = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
-
-            const text = await response.text();
-            let result;
-
-            try {
-              result = JSON.parse(text);
-            } catch (e) {
-              console.error('Failed to parse JSON response:', text);
-              if (status) status.textContent = "Server error. Please try again later.";
-              return;
-            }
-
-            if (result.success) {
-              if (status) status.textContent = "Message sent! Thanks.";
-              form.reset();
-            } else {
-              if (status) status.textContent = result.error || "Something went wrong.";
-            }
-          } catch (err) {
-            console.error('Form submit error:', err);
-            if (status) status.textContent = "Network error. Try again later.";
-          }
-        });
+      if (result.success) {
+        if (status) status.textContent = "Message sent!";
+        form.reset();
+      } else {
+        if (status) status.textContent = result.error || "Something went wrong.";
+      }
     });
-  });
 });
