@@ -6,6 +6,7 @@
   <title>Notorious C.O.B.</title>
   <link rel="stylesheet" href="src/styles.css" />
   <script type="module" src="src/main.js"></script>
+  <script type="module" src="/src/mail-handler.js"></script>
 
 </head>
 
@@ -63,26 +64,31 @@
   <section id="contact" class="page-section">
     <h2>Contact</h2>
     <form id="contact-form" method="POST">
-    <label>
+      <!-- Honeypot field (invisible to users) -->
+      <label style="display: none;">
+        Company
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </label>
+
+      <label>
         Full Name
         <input type="text" name="name" required>
-    </label>
+      </label>
 
-    <label>
+      <label>
         Email
         <input type="email" name="email" required>
-    </label>
+      </label>
 
-    <label>
+      <label>
         Message
         <textarea name="message" rows="6" required></textarea>
-    </label>
+      </label>
 
-    <button type="submit">Send</button>
+      <button type="submit">Send</button>
     </form>
-
-    <div id="contact-feedback"></div>
   </section>
+
   </main>
 
   <footer class="site-footer">
