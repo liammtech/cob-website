@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@panzoom/panzoom": "^4.6.0",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.3"
   },
   "main": "vite.config.js",
