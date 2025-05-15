@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ✅ Wait for reCAPTCHA before submitting
     grecaptcha.ready(() => {
-      grecaptcha.execute('YOUR_SITE_KEY_HERE', { action: 'submit' })
+      grecaptcha.execute('6LenIjwrAAAAAAYnqZPnVa8TRjTjWLJy2LrkTRfC', { action: 'submit' })
         .then(async (token) => {
           data.token = token;
 
