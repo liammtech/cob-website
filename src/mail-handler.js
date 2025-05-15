@@ -4,51 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    grecaptcha.ready(() => {
-      grecaptcha.execute('6LenIjwrAAAAAAYnqZPnVa8TRjTjWLJy2LrkTRfC', { action: 'submit' })
-        .then(async (token) => {
-          const formData = new FormData(form);
-          const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message'),
-            honeypot: formData.get('company'),
-            token: token, // ✅ Add the token here
-            
-          };
-          console.log('reCAPTCHA token:', token);
-          try {
-            const response = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      honeypot: formData.get('company'),
+    };
 
-            const text = await response.text();
-            let result;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-            try {
-              result = JSON.parse(text);
-            } catch (e) {
-              console.error('Failed to parse JSON:', text);
-              if (status) status.textContent = "Server error. Try again later.";
-              return;
-            }
+      const text = await response.text();
+      let result;
 
-            if (result.success) {
-              if (status) status.textContent = "Message sent!";
-              form.reset();
-            } else {
-              if (status) status.textContent = result.error || "Something went wrong.";
-            }
-          } catch (err) {
-            console.error('Form submit error:', err);
-            if (status) status.textContent = "Network error. Try again later.";
-          }
-        });
-    });
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        console.error('Failed to parse JSON:', text);
+        if (status) status.textContent = "Server error. Try again later.";
+        return;
+      }
+
+      if (result.success) {
+        if (status) status.textContent = "Message sent!";
+        form.reset();
+      } else {
+        if (status) status.textContent = result.error || "Something went wrong.";
+      }
+    } catch (err) {
+      console.error('Form submit error:', err);
+      if (status) status.textContent = "Network error. Try again later.";
+    }
   });
 });
