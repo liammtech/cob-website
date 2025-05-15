@@ -12,6 +12,23 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "@panzoom/panzoom": "^4.6.0"
-  }
+    "@panzoom/panzoom": "^4.6.0",
+    "nodemailer": "^7.0.3"
+  },
+  "main": "vite.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liammtech/cob-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liammtech/cob-website/issues"
+  },
+  "homepage": "https://github.com/liammtech/cob-website#readme",
+  "description": ""
 }

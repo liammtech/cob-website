@@ -293,6 +293,43 @@ function resetPanzoom() {
   }
 }
 
+const container = document.getElementById('panzoom-container');
+
+container.addEventListener('touchend', () => {
+  if (!panzoomInstance) return;
+
+  // Give the gesture a moment to settle
+  setTimeout(() => {
+    const currentZoom = panzoomInstance.getZoom();
+
+    if (currentZoom > 1.05) {
+      // User meant to zoom — don't reset
+      return;
+    }
+
+    // Otherwise, snap back to original position and scale
+    panzoomInstance.zoomAbs(0, 0, 1);
+    panzoomInstance.moveTo(0, 0);
+    document.querySelector('.modal-content')?.classList.remove('zoomed');
+  }, 100);
+});
+
+panzoomInstance = panzoom(container, {
+  // Existing settings...
+  zoomSpeed: 0.15,
+  bounds: true,
+  boundsPadding: 0.1,
+  smoothScroll: false,
+
+  // 👇 Add this for debugging
+  zoomDoubleClickSpeed: 1,
+  zoomSpeed: 0.15,
+  // simulate pinch with ctrl+wheel
+  beforeWheel: (e) => {
+    return e.ctrlKey; // only zoom when Ctrl is held
+  }
+});
+
 
 modalImg.onload = () => {
   requestAnimationFrame(() => {

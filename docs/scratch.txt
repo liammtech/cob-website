@@ -9,8 +9,6 @@
 - Browser tab Favicon (mini COB logo)
 - Trial modal without 'x' button (check about accessibility concerns)
 - Add independent finger-zoom for modal on mobile (so that background doesn't zoom as well)
-- Disable main/gallery scroll
-- Disappearing Illustration header (opacity set to 0?) - might be done
 - Consider retyping "About" page (HMRC)
 - Refactor Javascript and CSS
 - Put more pictures into gallery
