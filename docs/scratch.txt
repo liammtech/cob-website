@@ -18,3 +18,6 @@
 - Set up proper footer on zoho email
 - Check about automatic contact form receipt acknowledgment (is this professional from info@? Or should it be a do-not-reply? OR sod it off?)
 - Security concerns - set up Captcha (), rate limiting, honeypot field
+
+
+You've mentioned putting user and email as environment variables, either in a .env for testing - or in vercel project settings
