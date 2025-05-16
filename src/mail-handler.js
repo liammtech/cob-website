@@ -1,101 +1,63 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
+import nodemailer from 'nodemailer';
 
-  if (!form) return;
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).send({ message: 'Only POST requests allowed' });
+  }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    showLoader(); // 👈 start loader immediately
+  const { name, email, subject, message } = req.body;
 
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-      honeypot: formData.get('company') || '',
-      'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value || ''
-    };
+  if (!name || !email || !subject || !message) {
+    return res.status(400).send({ message: 'Missing required fields' });
+  }
 
-    console.log("Sending form data:", data);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const text = await response.text();
-      let result;
-
-      try {
-        result = JSON.parse(text);
-      } catch (e) {
-        console.error('Failed to parse JSON:', text);
-        if (status) status.textContent = "Server error. Try again later.";
-        hideLoader(); // 👈 stop loader even if fail
-        return;
-      }
-
-      if (result.success) {
-        if (status) status.textContent = "Message sent!";
-        form.reset();
-        hideLoader(); // 👈 hide before toast
-        showToast();  // 👈 toast shows after loader fades out
-      } else {
-        if (status) status.textContent = result.error || "Something went wrong.";
-        hideLoader();
-      }
-    } catch (err) {
-      console.error('Form submit error:', err);
-      if (status) status.textContent = "Network error. Try again later.";
-      hideLoader();
-    }
-  });
-});
-
-// 🔔 Toast logic
-function showToast() {
-  const toast = document.getElementById('contact-toast');
-  if (!toast) return;
-
-  toast.classList.remove('hidden'); // unhide
-  requestAnimationFrame(() => {     // allow DOM to apply change
-    toast.classList.add('show');    // then fade in
+  // Create reusable transporter object using SMTP
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.zoho.eu',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'info@notoriouscob.art',
+      pass: process.env.ZOHO_APP_PASSWORD,
+    },
   });
 
-  setTimeout(() => {
-    hideToast();
-  }, 5000);
-}
+  try {
+    // Send main email to your studio inbox
+    await transporter.sendMail({
+      from: '"Portfolio Website" <info@notoriouscob.art>',
+      to: 'info@notoriouscob.art',
+      subject: `[Website Contact] ${subject}`,
+      text: `
+New message from the Notorious C.O.B. contact form:
 
-function hideToast() {
-  const toast = document.getElementById('contact-toast');
-  if (!toast) return;
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
 
-  toast.classList.remove('show');
+Message:
+${message}
+      `,
+    });
 
-  // Wait for the fade-out transition to finish before hiding it
-  setTimeout(() => {
-    toast.classList.add('hidden');
-  }, 400); // match the CSS transition duration
-}
+    // Send auto-reply to user
+    await transporter.sendMail({
+      from: '"Notorious C.O.B." <info@notoriouscob.art>',
+      to: email,
+      subject: 'Thanks for getting in touch with Notorious C.O.B.',
+      text: `Hi,
 
-function showLoader() {
-  const loader = document.getElementById('form-loader');
-  if (!loader) return;
-  loader.classList.remove('hidden');
-  requestAnimationFrame(() => {
-    loader.classList.add('show');
-  });
-}
+Thanks for reaching out via the website — your message has been received safely.
 
-function hideLoader() {
-  const loader = document.getElementById('form-loader');
-  if (!loader) return;
-  loader.classList.remove('show');
-  setTimeout(() => {
-    loader.classList.add('hidden');
-  }, 300); // match transition duration
+I'll be in touch soon, but in the meantime, thanks again for your interest and support.
+
+All the best,  
+Notorious C.O.B.`,
+    });
+
+    return res.status(200).send({ message: 'Email sent successfully' });
+  } catch (err) {
+    console.error('Error sending mail:', err);
+    return res.status(500).send({ message: 'Something went wrong' });
+  }
 }
