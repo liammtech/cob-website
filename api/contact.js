@@ -1,5 +1,6 @@
 import { sendContactEmail } from '../lib/mailer.js';
 
+const CAPTCHA_SECRET = process.env.TURNSTILE_SECRET_KEY;
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 3;
@@ -21,6 +22,26 @@ export default async function handler(req, res) {
     }
   } else {
     rateLimitMap.set(ip, { count: 1, time: now });
+  }
+
+  // CAPTCHA
+
+  const token = req.body['cf-turnstile-response'];
+
+  if (!token) {
+    return res.status(400).json({ success: false, error: "Missing CAPTCHA token." });
+  }
+
+  const captchaRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${CAPTCHA_SECRET}&response=${token}`
+  });
+
+  const captchaJson = await captchaRes.json();
+
+  if (!captchaJson.success) {
+    return res.status(403).json({ success: false, error: "CAPTCHA verification failed." });
   }
 
   // Mail send

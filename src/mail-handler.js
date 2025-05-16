@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: formData.get('email'),
       message: formData.get('message'),
       honeypot: formData.get('company'),
+      'cf-turnstile-response': formData.get('cf-turnstile-response')
     };
 
     try {
