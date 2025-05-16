@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     showLoader(); // 👈 start loader immediately
-    
-    console.log("Turnstile token:", document.querySelector('[name="cf-turnstile-response"]')?.value);
 
     const formData = new FormData(form);
     const data = {
