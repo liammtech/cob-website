@@ -1,4 +1,4 @@
-import { sendContactEmail } from '../lib/mailer.js';
+import { sendContactEmail, sendContactAutoReply } from '../lib/mailer.js';
 
 const CAPTCHA_SECRET = process.env.TURNSTILE_SECRET_KEY;
 const rateLimitMap = new Map();
@@ -65,6 +65,7 @@ export default async function handler(req, res) {
 
   try {
     await sendContactEmail({ name, email, message });
+    await sendContactAutoReply(email);
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('Mail error:', err);
