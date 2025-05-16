@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     showLoader(); // 👈 start loader immediately
+    
+    console.log("Turnstile token:", document.querySelector('[name="cf-turnstile-response"]')?.value);
 
     const formData = new FormData(form);
     const data = {
@@ -14,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
       email: formData.get('email'),
       message: formData.get('message'),
       honeypot: formData.get('company') || '',
-      'cf-turnstile-response': formData.get('cf-turnstile-response')
+      'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value || ''
     };
+
+    console.log("Sending form data:", data);
 
     try {
       const response = await fetch('/api/contact', {
