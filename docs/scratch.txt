@@ -1,14 +1,11 @@
-- Accessibility (e.g. img alt attributes) - how does this work with the loaded images in gallery? Since they generated in DOM
 - Animated splash screen:
     - Initial down arrows
     - Logo draw ()
     - Migrate to header (or disappear on mobile?)
     - Only on first visit/session, if page is refreshed (cached?), then skip
-- Softer page load:
-    - Images to fade in sequentially
 - Replace the C.O.B. text element of "NOTORIOUS C.O.B." in header
 - Background graphics on About and Contact pages*
 - Debug pinch zoom effect on modal
-- Set up proper footer on zoho email
-- Check about automatic contact form receipt acknowledgment (is this professional from info@? Or should it be a do-not-reply? OR sod it off?)
+- Softer page load:
+    - Images to fade in sequentially
 - At the very end: Refactor Javascript and CSS (clean it all up)
