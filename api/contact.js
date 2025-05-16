@@ -44,6 +44,8 @@ export default async function handler(req, res) {
     return res.status(403).json({ success: false, error: "CAPTCHA verification failed." });
   }
 
+  console.log("CAPTCHA verification result:", captchaJson);
+
   // Mail send
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
