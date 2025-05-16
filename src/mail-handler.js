@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    showLoader(); // 👈 start loader immediately
 
     const formData = new FormData(form);
     const data = {
@@ -30,19 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {
         console.error('Failed to parse JSON:', text);
         if (status) status.textContent = "Server error. Try again later.";
+        hideLoader(); // 👈 stop loader even if fail
         return;
       }
 
       if (result.success) {
         if (status) status.textContent = "Message sent!";
         form.reset();
-        showToast(); // 🎉 toast appears on success
+        hideLoader(); // 👈 hide before toast
+        showToast();  // 👈 toast shows after loader fades out
       } else {
         if (status) status.textContent = result.error || "Something went wrong.";
+        hideLoader();
       }
     } catch (err) {
       console.error('Form submit error:', err);
       if (status) status.textContent = "Network error. Try again later.";
+      hideLoader();
     }
   });
 });
@@ -74,3 +79,20 @@ function hideToast() {
   }, 400); // match the CSS transition duration
 }
 
+function showLoader() {
+  const loader = document.getElementById('form-loader');
+  if (!loader) return;
+  loader.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    loader.classList.add('show');
+  });
+}
+
+function hideLoader() {
+  const loader = document.getElementById('form-loader');
+  if (!loader) return;
+  loader.classList.remove('show');
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 300); // match transition duration
+}
