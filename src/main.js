@@ -1,13 +1,6 @@
 import panzoom from '@panzoom/panzoom';
 
 document.addEventListener('DOMContentLoaded', () => {
-const turnstileEl = document.querySelector('.cf-turnstile');
-if (turnstileEl) {
-  turnstile.render(turnstileEl, {
-    sitekey: '0x4AAAAAABdhzWXZnEduacVE',
-    theme: 'auto'
-  });
-}
 const links = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('.page-section');
 
