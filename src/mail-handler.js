@@ -51,8 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function showToast() {
   const toast = document.getElementById('contact-toast');
   if (!toast) return;
-  toast.classList.remove('hidden');
-  toast.classList.add('show');
+
+  toast.classList.remove('hidden'); // unhide
+  requestAnimationFrame(() => {     // allow DOM to apply change
+    toast.classList.add('show');    // then fade in
+  });
 
   setTimeout(() => {
     hideToast();
@@ -62,6 +65,12 @@ function showToast() {
 function hideToast() {
   const toast = document.getElementById('contact-toast');
   if (!toast) return;
+
   toast.classList.remove('show');
-  toast.classList.add('hidden');
+
+  // Wait for the fade-out transition to finish before hiding it
+  setTimeout(() => {
+    toast.classList.add('hidden');
+  }, 400); // match the CSS transition duration
 }
+
