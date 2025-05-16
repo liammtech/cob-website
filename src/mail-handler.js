@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (result.success) {
         if (status) status.textContent = "Message sent!";
         form.reset();
+        showToast(); // 🎉 toast appears on success
       } else {
         if (status) status.textContent = result.error || "Something went wrong.";
       }
@@ -45,3 +46,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// 🔔 Toast logic
+function showToast() {
+  const toast = document.getElementById('contact-toast');
+  if (!toast) return;
+  toast.classList.remove('hidden');
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    hideToast();
+  }, 5000);
+}
+
+function hideToast() {
+  const toast = document.getElementById('contact-toast');
+  if (!toast) return;
+  toast.classList.remove('show');
+  toast.classList.add('hidden');
+}
