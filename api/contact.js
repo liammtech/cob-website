@@ -6,6 +6,7 @@ const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 3;
 
 export default async function handler(req, res) {
+  console.log("Incoming body:", req.body);
 
   // Rate handling
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
