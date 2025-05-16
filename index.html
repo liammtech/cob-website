@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ Final consolidated CSP -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' https://challenges.cloudflare.com;
     style-src 'self' 'unsafe-inline';
-    font-src https://challenges.cloudflare.com;
+    font-src 'self' https://challenges.cloudflare.com;
   ">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://challenges.cloudflare.com;">
+
   <title>Notorious C.O.B.</title>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="src/styles.css" />
+
+  <!-- Scripts -->
   <script type="module" src="src/main.js"></script>
   <script type="module" src="/src/mail-handler.js"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
 </head>
+
 
 <body>
 
