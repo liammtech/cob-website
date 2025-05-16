@@ -65,8 +65,10 @@
   <section id="contact" class="page-section">
     <h2>Contact</h2>
     <form id="contact-form" method="POST">
-      <label style="display: none !important;">
-        Company
+      
+      <!-- Honeypot field (hidden offscreen) -->
+      <label class="honeypot-label" aria-hidden="true">
+        <span class="visually-hidden">Leave this field empty</span>
         <input type="text" name="company" tabindex="-1" autocomplete="off">
       </label>
 
@@ -91,6 +93,7 @@
       <div id="form-loader" class="loader hidden" aria-hidden="true"></div>
     </form>
   </section>
+
 
   </main>
 

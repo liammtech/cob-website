@@ -422,6 +422,21 @@ main {
   color: white;
 }
 
+/* Hide honeypot field completely without affecting layout */
+.honeypot-label {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.visually-hidden {
+  display: none !important;
+}
+
+
 /* FOOTER =========================== */
 
 .site-footer {
