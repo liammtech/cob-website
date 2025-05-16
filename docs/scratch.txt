@@ -8,10 +8,7 @@
     - Images to fade in sequentially
 - Replace the C.O.B. text element of "NOTORIOUS C.O.B." in header
 - Background graphics on About and Contact pages*
-- Browser tab Favicon (mini COB logo)
 - Debug pinch zoom effect on modal
 - Set up proper footer on zoho email
-- Pop-up to notify user on page - contact message successfully sent
 - Check about automatic contact form receipt acknowledgment (is this professional from info@? Or should it be a do-not-reply? OR sod it off?)
-- Security concerns - set up Captcha (), rate limiting, honeypot field
-- Refactor Javascript and CSS (clean it all up)
+- At the very end: Refactor Javascript and CSS (clean it all up)

@@ -37,46 +37,46 @@ console.log('Gallery:', document.querySelector('.gallery'));
 
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
-  // Clear any existing content
   gallery.innerHTML = '';
 
-  // Get pattern for the current viewport width.
   const pattern = getPattern();
-  
+
   let i = 0;
   let rowIndex = 0;
-  
-  // Loop through imageFilenames, building rows in groups according to the pattern.
+
   while (i < imageFilenames.length) {
-    // Select the pattern for this row:
     const bricksInRow = pattern[rowIndex % pattern.length];
-    
-    // Create row container with a class reflecting the row type.
+
     const row = document.createElement('div');
     row.classList.add('row');
-    // Optionally add another class, e.g. 'full' or 'offset', if you want different styling
-    // For example:
-    // row.classList.add(rowIndex % 2 === 0 ? 'full' : 'offset');
 
-    // Create the specified number of bricks:
     for (let j = 0; j < bricksInRow && i < imageFilenames.length; j++, i++) {
       const brick = document.createElement('div');
       brick.classList.add('brick');
-      
+
       const img = document.createElement('img');
-      img.src = `assets/images/${imageFilenames[i]}`;
-      img.alt = '';
-      
+      const filename = imageFilenames[i];
+      img.src = `assets/images/${filename}`;
+      img.alt = generateAltFromFilename(filename, i);
+
       brick.appendChild(img);
       row.appendChild(brick);
     }
-    
+
     gallery.appendChild(row);
     rowIndex++;
   }
 
   attachHoverFloatLogic();
 }
+
+// Generates a generic alt text like: "Artwork 1", "Artwork 2", etc.
+function generateAltFromFilename(filename, index) {
+  const match = filename.match(/(\d+)/); // Extract digits from filename
+  const number = match ? parseInt(match[1], 10) : index + 1;
+  return `Artwork ${number}`;
+}
+
 
 // Initial fetch and render:
 fetch('/assets/images/images.json')
