@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message'),
-      honeypot: formData.get('company'),
+      honeypot: formData.get('company') || '',
       'cf-turnstile-response': formData.get('cf-turnstile-response')
     };
 
