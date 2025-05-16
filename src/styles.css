@@ -49,6 +49,12 @@ body {
   font-weight: 500;
 }
 
+#site-logo-image {
+  height: 48px;
+  vertical-align: middle; /* try top, bottom, baseline too */
+  position: relative;
+}
+
 .site-logo > a::after {
   content: '';
   position: absolute;
@@ -647,6 +653,11 @@ main {
 
   .site-logo > a {
     font-size: 2rem;
+  }
+
+  #site-logo-image {
+    height: 36px;
+    
   }
 
   .menu-toggle {
