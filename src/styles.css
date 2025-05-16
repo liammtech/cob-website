@@ -371,7 +371,7 @@ main {
 /* CONTACT ============================== */
 
 /* Container */
-#contact-form {
+#contact-form label:not([hidden]):not(.honeypot) {
   display: flex;
   flex-direction: column;
   align-items: center;
